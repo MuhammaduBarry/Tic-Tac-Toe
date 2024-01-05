@@ -55,12 +55,17 @@ const Game = (() => {
           const isWin = trackGame.some((win) =>
             win.every((position) => indexesX.includes(position))
           );
+
           if (isWin) {
             console.log(`${currentUser} wins`);
             body.removeChild(cellContainer);
+            body.removeChild(currentUserStatus);
             restartBtn();
           } else if (checkedCells()) {
             alert("draw");
+            document.addEventListener("click", ()=> {
+                location.reload()
+            })
           }
           currentUser = "O";
           currentUserStatus.innerText = `Current Player : ${currentUser}`;
@@ -71,11 +76,15 @@ const Game = (() => {
             win.every((position) => indexesO.includes(position))
           );
           if (isWin) {
-            console.log(`Player ${currentUser} wins`);
+            console.log(`${currentUser} wins`);
             body.removeChild(cellContainer);
+            body.removeChild(currentUserStatus);
             restartBtn();
           } else if (checkedCells()) {
             alert("draw");
+            document.addEventListener("click", ()=> {
+                location.reload()
+            })
           }
           currentUser = "X";
           currentUserStatus.innerText = `Current Player : ${currentUser}`;
